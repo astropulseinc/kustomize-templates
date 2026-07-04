@@ -4,6 +4,10 @@ metadata:
   name: ingress
   annotations:
     external-dns.alpha.kubernetes.io/ttl: "10"
+    # cert-manager issues a per-host certificate into spec.tls[].secretName.
+    # Without this the referenced tls-secret never exists and nginx serves
+    # its Fake Certificate for every app endpoint.
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   tls:
