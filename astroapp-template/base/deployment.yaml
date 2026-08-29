@@ -22,7 +22,8 @@ spec:
       - image: hello-world:latest
         name: astropulse-app
         ports:
-        - containerPort: 80
+        - name: http
+          containerPort: 8080
       tolerations:
       - key: "node.cluster.platform.astropulse.io/purchase-option"
         operator: "Equal"
