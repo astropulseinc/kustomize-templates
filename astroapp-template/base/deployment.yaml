@@ -18,9 +18,17 @@ spec:
       labels:
         app: app
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - image: hello-world:latest
         name: astropulse-app
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
         ports:
         - name: http
           containerPort: 8080
